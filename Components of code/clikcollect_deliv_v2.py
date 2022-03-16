@@ -1,3 +1,4 @@
+#menu so that customer can choose click and collect or delivery
 #Bug
 #Code accepts anything, not just 1 or 2
 #invalid input prints the else statemeent but does not ask for another input
