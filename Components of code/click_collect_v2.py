@@ -16,7 +16,7 @@ while not valid:
 #customer mobile phone
 valid = False 
 while not valid:
-    mobile_phone = input("Please enter your mobile phone number")
+    mobile_phone = input("Please enter your mobile phone number ")
     if mobile_phone != "":
         print (mobile_phone)
         break
