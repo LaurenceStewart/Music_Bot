@@ -19,6 +19,6 @@ print (customer_details['name'])
 question = ("Please enter you mobile phone number ")
 customer_details['mobile_phone'] = not_blank(question)
 print (customer_details['mobile_phone'])
-
+print()
 
 print (customer_details)
