@@ -39,7 +39,7 @@ for item in range(num_items):
     while num_items > 0:
         while True:
             try: 
-                items_ordered = int(input("Please choose what item or items by entering the number from the menu"))
+                items_ordered = int(input("Please choose what item or items by entering the number from the menu "))
                 if items_ordered >= 1 and items_ordered <=12:
                     break
                 else:
@@ -50,7 +50,7 @@ for item in range(num_items):
         items_ordered = items_ordered -1
         order_list.append(music_names[items_ordered])
         order_cost.append(music_prices[items_ordered])
-        print("{} ${:.2f}  .format(item_names[items_ordered],item_prices[item_ordered]))")
+        print("{} ${:.2f}"  .format(music_names[items_ordered],music_prices[items_ordered]))
         num_items = num_items-1
 
 print(order_list)
