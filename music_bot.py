@@ -121,3 +121,45 @@ def menu():
 
 
 #Choose total number of music items
+#Music items order, code to print items and cost from menu
+def order_music():
+
+    #ask total number of pizzas for order
+    num_items = 0
+
+    while True:
+        try:
+            num_items = int(input("How many items do you want to order? "))
+            if num_items >= 1 and num_items <=12:
+                break
+            else:
+                print ("Your order must be between 1 and 12 items")
+        except ValueError:
+            print("That is not a valid number")
+            print("Please enter a number between 1 and 12")
+
+
+    #Choose pizza from menu
+    for item in range(num_items):
+        while num_items > 0:
+            while True:
+                try: 
+                    items_ordered = int(input("Please choose what item or items by entering the number from the menu "))
+                    if items_ordered >= 1 and items_ordered <=12:
+                        break
+                    else:
+                        print("Your item must be between 1 and 12")
+                except ValueError:
+                        print("That is not a valid number")
+                        print("Please enter a number between 1 and 12")
+            items_ordered = items_ordered -1
+            order_list.append(music_names[items_ordered])
+            order_cost.append(music_prices[items_ordered])
+            print("{} ${:.2f}"  .format(music_names[items_ordered],music_prices[items_ordered]))
+            num_items = num_items-1
+
+
+#print order out
+#include if for click and collect or delivery (and users information for those options)
+#also include items chosen and their costs
+#code will also have to add a $9 delivery fee is customer orders 4 or less items.  5+ items delivery is free
