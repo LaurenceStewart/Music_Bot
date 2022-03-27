@@ -8,7 +8,7 @@ def not_blank(question):
         if response != "":
             return response.title()
         else: 
-            print("This cannot be blank")
+            print("Sorry this cannot be blank")
 
 
 #instructions
@@ -20,5 +20,6 @@ question = ("Please enter you mobile phone number ")
 customer_details['mobile_phone'] = not_blank(question)
 print (customer_details['mobile_phone'])
 print()
+print("You will recieve a text message when your order if ready to be picked up")
 
 print (customer_details)
