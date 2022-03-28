@@ -1,5 +1,5 @@
 #music bot program
-#23/3/22
+#23/3/22 
 #bugs
 #phone number allows numbers
 #name inout allows numbers
@@ -126,7 +126,7 @@ def menu():
 
 
 #Choose total number of music items
-#Music items order, code to print items and cost from menu
+    #Music items order, code to print items and cost from menu
 def order_music():
 
     #ask total number of pizzas for order
@@ -165,9 +165,7 @@ def order_music():
 
 
 #print order out
-
-
-#include if for click and collect or delivery (and users information for those options)
+    #include if for click and collect or delivery (and users information for those options)
 def print_order():
     total_cost = sum(order_cost)
     print("Customer Details")
