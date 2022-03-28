@@ -4,6 +4,7 @@
 #phone number allows numbers
 #name inout allows numbers
 
+import sys
 import random
 from random  import randint
 
@@ -62,10 +63,14 @@ def order_type():
             if delivery >= 1 and delivery <= 2:
                 if delivery == 1:
                     print("Click and collect")
+                    del_click = 'click and collect'
+                    clickcollect_info()
                     break
             
                 elif delivery == 2:
                     print("Delivery")
+                    delivery_info()
+                    del_click = 'delivery'
                     break
             else:
                 print("The number entered must be 1 or 2")
@@ -160,6 +165,93 @@ def order_music():
 
 
 #print order out
+
+
 #include if for click and collect or delivery (and users information for those options)
-#also include items chosen and their costs
-#code will also have to add a $9 delivery fee is customer orders 4 or less items.  5+ items delivery is free
+def print_order():
+    total_cost = sum(order_cost)
+    print("Customer Details")
+    print(f"Customer Name: {customer_details['name']} \nCustomer Phone: {customer_details['phone']} \nCustomer Addres: {customer_details['house']} \nCustomer Street: {customer_details['street']} \nCustomer Suburb: {customer_details['suburb']}")
+    print()
+    print("Order Details")
+    count = 0
+    for item in order_list:
+        print("Ordered: {} Cost: ${:.2f}".format(item, order_cost[count]))
+        count = count+1
+    print()
+    print("Order Cost")
+    print(f"${total_cost:.2f}")
+
+#ability to cancel or proceed with order
+def confirm_cancel():
+    print ("Please confirm your order below")
+    print ("To confirm please enter 1")
+    print ("To cancel please enter 2")
+
+    while True:
+        try:    
+            confirm = int(input("Please enter a number "))
+            if confirm >= 1 and confirm <= 2:
+                if confirm == 1: 
+                    print("Order Confirmed")
+                    print("Your order has been sent to our store for processing")
+                    break
+
+                elif confirm == 2:
+                    print("Your Order has been Cancelled")
+                    print("You can restart you order or exit the BOT")
+                    break
+                else: 
+                    print("The number must be 1 or 2")
+        except ValueError:
+            print ("That is not a valid input")
+            print ("Please enter 1 or 2")
+
+
+#Option for new order or to exit the program
+        while True:
+            try:    
+                confirm = int(input("Please enter a number "))
+                if confirm >= 1 and confirm <= 2:
+                    if confirm == 1: 
+                        print("New Order")
+                        print()
+                        order_list.clear()
+                        order_cost.clear()
+                        customer_details.clear()
+                        main()
+                        break
+
+                    elif confirm == 2:
+                        print("Exit")
+                        print()
+                        order_list.clear()
+                        order_cost.clear()
+                        customer_details.clear()
+                        sys.exit
+                        break
+                else: 
+                    print("The number must be 1 or 2")
+            except ValueError:
+                print ("That is not a valid input")
+                print ("Please enter 1 or 2")
+
+
+
+# Main function
+def main():
+    '''
+    Purpose: To run all functions
+    a welcome message
+    Parameters: none
+    Returns: none
+    '''
+    welcome()
+    del_click = order_type()
+    menu()
+    order_music()
+    print_order(del_click)
+    confirm_cancel()
+
+
+main()
