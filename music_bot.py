@@ -171,7 +171,7 @@ def print_order(del_click):
     print ("Your Details")
     if del_click == "click and collect":
         print("Your order is for Click and Collect")
-        print(f"Customer Name: {customer_details['name']} \nCustomer Phone: {customer_details['phone']}")
+        print(f"Customer Name: {customer_details['name']} \nCustomer Phone: {customer_details['mobile_phone']}")
     elif del_click == "delivery":
         print("Your order is for Delivery")
         print(f"Customer Name: {customer_details['name']} \nCustomer Phone: {customer_details['phone']} \nCustomer Address: {customer_details['house']} {customer_details['street']} {customer_details['suburb']}")
@@ -188,6 +188,7 @@ def print_order(del_click):
 
 #ability to cancel or proceed with order
 def confirm_cancel():
+
     print ("Please confirm your order below")
     print ("To confirm please enter 1")
     print ("To cancel please enter 2")
@@ -199,46 +200,57 @@ def confirm_cancel():
                 if confirm == 1: 
                     print("Order Confirmed")
                     print("Your order has been sent to our store for processing")
+                    print()
+                    
                     break
 
                 elif confirm == 2:
                     print("Your Order has been Cancelled")
                     print("You can restart you order or exit the BOT")
+                    print()
+                    
                     break
-            else: 
-                print("The number must be 1 or 2")
+                else: 
+                    print("The number must be 1 or 2")
         except ValueError:
             print ("That is not a valid input")
             print ("Please enter 1 or 2")
+
 
 
 #Option for new order or to exit the program
-    while True:
-        try:    
-            confirm = int(input("Please enter a number "))
-            if confirm >= 1 and confirm <= 2:
-                if confirm == 1: 
-                    print("New Order")
-                    print()
-                    order_list.clear()
-                    order_cost.clear()
-                    customer_details.clear()
-                    main()
-                    break
+def new_exit():
+        print ("Do you want to start another order or exit? ")
+        print ("To start another order enter 1")
+        print ("To exit the BOT enter 2")
+        print()
 
-                elif confirm == 2:
-                    print("Exit")
-                    print()
-                    order_list.clear()
-                    order_cost.clear()
-                    customer_details.clear()
-                    sys.exit
-                    break
-            else: 
-                print("The number must be 1 or 2")
-        except ValueError:
-            print ("That is not a valid input")
-            print ("Please enter 1 or 2")
+        while True:
+            try:    
+                confirm = int(input("Please enter a number "))
+                if confirm >= 1 and confirm <= 2:
+                    if confirm == 1: 
+                        print("New Order")
+                        print()
+                        order_list.clear()
+                        order_cost.clear()
+                        customer_details.clear()
+                        main()
+                        break
+
+                    elif confirm == 2:
+                        print("Exit")
+                        print()
+                        order_list.clear()
+                        order_cost.clear()
+                        customer_details.clear()
+                        sys.exit
+                        break
+                else: 
+                    print("The number must be 1 or 2")
+            except ValueError:
+                print ("That is not a valid input")
+                print ("Please enter 1 or 2")
 
 
 
