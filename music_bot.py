@@ -90,7 +90,6 @@ def clickcollect_info():
     question = ("Please enter you mobile phone number ")
     customer_details['mobile_phone'] = not_blank(question)
     print (customer_details['mobile_phone'])
-    print(customer_details)
     print()
 
 
@@ -129,7 +128,7 @@ def menu():
 #Choose total number of music items
 #Music items order, code to print items and cost from menu
 def order_music():
-    #ask total number of items for order
+    #ask total number of items for orders
     num_items = 0
     while True:
         try:
@@ -166,21 +165,31 @@ def order_music():
 #print order out
     #include if for click and collect or delivery (and users information for those options)
 def print_order(del_click):
-    print()
-    total_cost = sum(order_cost)
-    print ("Your Details")
-    if del_click == "click and collect":
-        print("Your order is for Click and Collect")
+    total_cost = sum(order_cost)        
+    if del_click == 'click and collect':
+        print("Your order if for Click and Collect")
+        print()
+        print("Your Details")
         print(f"Customer Name: {customer_details['name']} \nCustomer Phone: {customer_details['mobile_phone']}")
-    elif del_click == "delivery":
-        print("Your order is for Delivery")
+        print()
+        print("You will receive a text message when your item/s are ready to be picked up")
+    elif del_click == 'delivery':
+        print("Your order if for delivery")
         print(f"Customer Name: {customer_details['name']} \nCustomer Phone: {customer_details['phone']} \nCustomer Address: {customer_details['house']} {customer_details['street']} {customer_details['suburb']}")
-    print()
+        print()
+#line break
     print("Your Order Details")
     count = 0
     for item in order_list:
-        print("Ordered: {} Cost ${:.2f}".format(item, order_cost[count]))
+        print("Ordered: {} Cost: ${:.2f}".format(item, order_cost[count]))
         count = count+1
+    print()
+    if del_click == "delivery":
+        if len(order_list) >= 5:
+            print("Your delivery charge is free")
+        elif len(order_list) <= 5:
+            print("A $9.00 delivery fee applies. It will be included in the total cost")
+            total_cost = total_cost+9
     print()
     print("Total Order Cost")
     print(f"${total_cost:.2f}")
@@ -201,14 +210,14 @@ def confirm_cancel():
                     print("Order Confirmed")
                     print("Your order has been sent to our store for processing")
                     print()
-                    
+                    new_exit()
                     break
 
                 elif confirm == 2:
                     print("Your Order has been Cancelled")
                     print("You can restart you order or exit the BOT")
                     print()
-                    
+                    new_exit()
                     break
                 else: 
                     print("The number must be 1 or 2")
