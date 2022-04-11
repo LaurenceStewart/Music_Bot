@@ -12,17 +12,15 @@ def confirm_cancel():
                     print("Order Confirmed")
                     print("Your order has been sent to our store for processing")
                     print()
-                    
                     break
 
                 elif confirm == 2:
                     print("Your Order has been Cancelled")
                     print("You can restart you order or exit the BOT")
                     print()
-                    
                     break
-                else: 
-                    print("The number must be 1 or 2")
+            else: 
+                print("The number must be 1 or 2")
         except ValueError:
             print ("That is not a valid input")
             print ("Please enter 1 or 2")

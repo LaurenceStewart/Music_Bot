@@ -9,6 +9,9 @@ import random
 from random import randint
 from turtle import st
 
+PH_LOW = 7 # lowest number is 7
+PH_HIGH = 10 # highest number is 10
+
 # list of random names
 names = ["Laurence", "George", "Toby", "Caleb", "Matthew", "Josh", "Terry", "Zach", "Luke", "Oscar"]
 # list of music names
@@ -37,6 +40,30 @@ def not_blank(question):
         else: 
             print("This cannot be blank")
 
+def check_string(question):
+    while True:
+        response = input(question)
+        x = response.isalpha()
+        if x == False:
+            print("Input must only contain letters")
+        else:
+            return response.title()
+
+def check_phone(question, PH_LOW, PH_HIGH):
+    while True: # sets up while loop
+        try:
+            num = int(input(question)) # expect customer input is integer
+            test_num = num 
+            count = 0
+            while test_num > 0:
+                test_num = test_num//10
+                count = count+1
+            if count >= PH_LOW and count <= PH_HIGH: # if number entered between 7 and 10 it will print it
+                return str(num)                
+            else: # if number entered is not between 7 and 10 it will print message
+                print("NZ phone number have between 7 and 10 digits")
+        except ValueError: # if input is not a number
+            print("Try again")
 
 # welcome message
 def welcome():
@@ -85,12 +112,12 @@ def order_type():
 
 #Click and collect information - name and mobile phone
 def clickcollect_info(): # function to collect customers click and collect information
-    question = ("Please enter you name ") # question for customers name
-    customer_details['name'] = not_blank(question) # input stored in dictionary, blank input run def not_blank 
+    question = ("Please enter your name ") # question for customers name
+    customer_details['name'] = check_string(question) # input stored in dictionary, blank input run def not_blank 
     print (customer_details['name']) # print customers entered name
 
-    question = ("Please enter you mobile phone number ") # question for customers mobile phone number
-    customer_details['mobile_phone'] = not_blank(question) # input stored in dictionary, blank input run def not_blank 
+    question = ("Please enter your mobile phone number ") # question for customers mobile phone number
+    customer_details['mobile_phone'] = check_phone(question, PH_LOW, PH_HIGH) # input stored in dictionary, blank input run def not_blank 
     print (customer_details['mobile_phone']) # prints customers entered mobile phone number
     print()
 
@@ -98,23 +125,23 @@ def clickcollect_info(): # function to collect customers click and collect infor
 #Delivery information - name, address, phone number
 def delivery_info(): # function to collect customers delivery information
     question = ("Please enter your name ") # question for customers name
-    customer_details['name'] = not_blank(question) # input stored in dictionary, blank input run def not_blank
+    customer_details['name'] = check_string(question) # input stored in dictionary, blank input run def not_blank
     print (customer_details['name']) # prints customers entered name
 
-    question = ("Please enter you phone number ") # question for customers phone number
-    customer_details['phone'] = not_blank(question) # input stored in dictionary, blank input run def not_blank
+    question = ("Please enter your phone number ") # question for customers phone number
+    customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH) # input stored in dictionary, blank input run def not_blank
     print (customer_details['phone']) # prints customers entered phone number
 
-    question = ("Please enter you house number ") # question for customers house number
+    question = ("Please enter your house number ") # question for customers house number
     customer_details['house'] = not_blank(question) # input stored in dictionary, blank input run def not_blank
     print (customer_details['house']) # prints customers entered house number
 
-    question = ("Please enter you street name ") # question for customers street name
-    customer_details['street'] = not_blank(question) # input stored in dictionary, blank input run def not_blank
+    question = ("Please enter your street name ") # question for customers street name
+    customer_details['street'] = check_string(question) # input stored in dictionary, blank input run def not_blank
     print (customer_details['street']) # prints customer entered street name
 
-    question = ("Please enter you suburb ") # question for customers suburb
-    customer_details['suburb'] = not_blank(question) # input stored in dictionary, blank input run def not_blank
+    question = ("Please enter your suburb ") # question for customers suburb
+    customer_details['suburb'] = check_string(question) # input stored in dictionary, blank input run def not_blank
     print (customer_details['suburb']) # prints customers entered suburb
     print()
 
@@ -221,8 +248,8 @@ def confirm_cancel(): # function to confirm or cancel the order
                     print()
                     new_exit() # runs new_exit function
                     break # exits out of loop
-                else: # something other than a number is entered
-                    print("The number must be 1 or 2")
+            else: # something other than a number is entered
+                print("The number must be 1 or 2")
         except ValueError: # a number below 1 or above 2 is entered
             print ("That is not a valid input")
             print ("Please enter 1 or 2")
