@@ -31,23 +31,23 @@ customer_details = {}  # this is where the customers information will be stored
 
 
 # validated inputs to check if they are blank
-def not_blank(question):
+def not_blank(question): # function to check blank inputs and print not blank message
     valid = False
     while not valid:
         response = input(question)  # asks for input
         if response != "":  # if response is blank print error message
             return response.title()  # if true returns response 
         else: 
-            print("This cannot be blank")
+            print("This cannot be blank") # this cannot be blank message
 
-def check_string(question):
-    while True:
+def check_string(question): # function to check for numbers in inputs that should only contain letters
+    while True: # sets up while loop
         response = input(question)
         x = response.isalpha()
         if x == False:
-            print("Input must only contain letters")
+            print("Input must only contain letters") # error message
         else:
-            return response.title()
+            return response.title() # returns response and makes sure the first letter entered is a capital and rest are lowercase
 
 def check_phone(question, PH_LOW, PH_HIGH):
     while True:  # sets up while loop
@@ -59,24 +59,24 @@ def check_phone(question, PH_LOW, PH_HIGH):
                 test_num = test_num//10
                 count = count + 1
             if count >= PH_LOW and count <= PH_HIGH:  # if number entered between 7 and 10 it will print it
-                return str(num)                
+                return str(num) # returns string to variable, question          
             else:  # if number entered is not between 7 and 10 it will print message
                 print("NZ phone number have between 7 and 10 digits")
         except ValueError:  # if input is not a number
             print("Try again")
 
 # welcome message
-def welcome():
+def welcome(): # function to print a welcome message to the customer
     # what the code does, if it has any parameters or returns
     '''
     Purpose: to generate a random name from the list and print out a welcome message 
     Parameters: none
     Returns: none
     '''
-    num = randint(0,9)
-    name = (names[num])
+    num = randint(0,9) # random integer within 0 - 9, this is how many random names are in the list
+    name = (names[num]) # name generated corresponds to randint or random number in line above
     print("#### Welcome to Groovey Music ####")
-    print("#### My name is",name, "####")
+    print("#### My name is",name, "####") # prints message with random name from list
     print("#### I am here to help you order music albums of your choice ####")
     print()
 
@@ -90,24 +90,23 @@ def order_type():
     print()
     while True:  # sets up while loop
         try:    
-            delivery = int(input("Please enter a number "))  # variable, expected input will be an integer
+            delivery = int(input("Please enter a number ")) # variable, expected input will be an integer
             if delivery >= 1 and delivery <= 2:
-                if delivery == 1:  # if delivery (variable) is 1
+                if delivery == 1: # if delivery (variable) is 1
                     print("Click and collect")
                     print()
-                    del_click = 'click and collect'  # variable is for click and collect 
+                    del_click = 'click and collect' # variable is for click and collect 
                     clickcollect_info()  # runs click and collect info function
-                    break #  exits out of the loop
+                    break # exits out of the loop
             
-                elif delivery == 2:  # elif delivery (variable) is 2
+                elif delivery == 2: # elif delivery (variable) is 2
                     print("Delivery")
                     print()
-                    del_click = 'delivery'  # variable is for delivery
+                    del_click = 'delivery' # variable is for delivery
                     delivery_info()  # runs delivery info function
                     break # exits out of the loop
-            else:  # something other than a number is entered
+            else: # something other than a number is entered
                 print("The number entered must be 1 or 2")
-
         except ValueError:  # a number other than 1 or 2 is entered
             print ("That is not a valid input")
             print ("Please enter 1 or 2")
@@ -187,7 +186,7 @@ def order_music():  # function to see how many items the customer wants to order
             while True:  # sets up while loop
                 try: 
                     items_ordered = int(input("Please choose what item or items by entering the number from the menu "))  # expected input will be a integer
-                    if items_ordered >= 1 and items_ordered <=12:
+                    if items_ordered >= 1 and items_ordered <=12: # if integer entered is larger than 1 and smaller than 12
                         break  # exits out of loop
                     else:  # if something other than a number is entered
                         print("Your item must be between 1 and 12") 
@@ -195,7 +194,7 @@ def order_music():  # function to see how many items the customer wants to order
                         print("That is not a valid number")
                         print("Please enter a number between 1 and 12")
             items_ordered = items_ordered -1
-            order_list.append(music_names[items_ordered])
+            order_list.append(music_names[items_ordered]) # 
             order_cost.append(music_prices[items_ordered])
             print("{} ${:.2f}"  .format(music_names[items_ordered],music_prices[items_ordered]))  # prints selected items with cost from lists
             num_items = num_items-1
@@ -203,22 +202,23 @@ def order_music():  # function to see how many items the customer wants to order
 
 # print order out
 # include if for click and collect or delivery (and users information for those options)
+# 'print()' are to add spaces between lines when the code is run
 def print_order(del_click):  # function to print out order information and customer details
     total_cost = sum(order_cost)  # variable total_cost is sum(order_cost), which is music_prices added up     
     if del_click == 'click and collect':  # if parameter click and collect, prints customer details for click and collect from customer_details dictionary 
-        print()
+        print() 
         print("Your order if for Click and Collect")
         print()
         print("Your Details")
         print(f"Customer Name: {customer_details['name']} \nCustomer Phone: {customer_details['mobile_phone']}")
-        print()  # the line above gets customers information from the dictionary
+        print()  # the line above gets customers information from the dictionary and prints it for the customer to see
         print("You will receive a text message when your item/s are ready to be picked up")
         print()
     elif del_click == 'delivery':  # if parameter is delivery, prints customer details for delivery from customer_details dictionary
         print()
         print("Your order is for delivery")
         print(f"Customer Name: {customer_details['name']} \nCustomer Phone: {customer_details['phone']} \nCustomer Address: {customer_details['house']} {customer_details['street']} {customer_details['suburb']}")
-        print()  # the line above gets customers information from the dictionary
+        print()  # the line above gets customers information from the dictionary and prints it for the customer to see
 # line break
     print("Your Order Details")
     count = 0
@@ -234,9 +234,8 @@ def print_order(del_click):  # function to print out order information and custo
             print("A $9.00 delivery fee applies. It will be included in the total cost")  # tells customer about delivery fee
             print()
             total_cost = total_cost+9  # adds $9.00 to total cost 
-    print()
     print("Total Order Cost")
-    print(f"${total_cost:.2f}")  # prints total order cost to 2 decimal places with dollar sign
+    print(f"${total_cost:.2f}")  # prints total order cost to 2 decimal places, with dollar sign
     print()
 
 
