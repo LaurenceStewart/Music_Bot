@@ -75,6 +75,7 @@ def welcome(): # function to print a welcome message to the customer
     '''
     num = randint(0,9) # random integer within 0 - 9, this is how many random names are in the list
     name = (names[num]) # name generated corresponds to randint or random number in line above
+    print()
     print("#### Welcome to Groovey Music ####")
     print("#### My name is",name, "####") # prints message with random name from list
     print("#### I am here to help you order music albums of your choice ####")
@@ -85,8 +86,8 @@ def welcome(): # function to print a welcome message to the customer
 def order_type():
     del_click = ""
     print ("Would you like to click and collect your order or have it delivered?")
-    print ("For click and collect enter 1")
-    print ("For delivery enter 2")
+    print ("1 For click and collect ")
+    print ("2 For delivery ")
     print()
     while True:  # sets up while loop
         try:    
@@ -115,12 +116,12 @@ def order_type():
 
 #Click and collect information - name and mobile phone
 def clickcollect_info():  # function to collect customers click and collect information
-    question = ("Please enter your name ")  # question for customers name
+    question = ("1 Please enter your name ")  # question for customers name
     customer_details['name'] = check_string(question)  # input stored in dictionary, blank input run def check_string
     print (customer_details['name'])  # print customers entered name
     print()
 
-    question = ("Please enter your mobile phone number ")  # question for customers mobile phone number
+    question = ("2 Please enter your mobile phone number ")  # question for customers mobile phone number
     customer_details['mobile_phone'] = check_phone(question, PH_LOW, PH_HIGH)  # input stored in dictionary, blank input run def check_phone 
     print (customer_details['mobile_phone'])  # prints customers entered mobile phone number
     print()
@@ -128,27 +129,27 @@ def clickcollect_info():  # function to collect customers click and collect info
 
 #Delivery information - name, address, phone number
 def delivery_info():  # function to collect customers delivery information
-    question = ("Please enter your name ")  # question for customers name
+    question = ("1 Please enter your name ")  # question for customers name
     customer_details['name'] = check_string(question)  # input stored in dictionary, blank input run def check_string
     print (customer_details['name'])  # prints customers entered name
     print()
 
-    question = ("Please enter your phone number ")  # question for customers phone number
+    question = ("2 Please enter your phone number ")  # question for customers phone number
     customer_details['phone'] = check_phone(question, PH_LOW, PH_HIGH)  # input stored in dictionary, blank input run def check_phone
     print (customer_details['phone'])  # prints customers entered phone number
     print()
 
-    question = ("Please enter your house number ")  # question for customers house number
+    question = ("3 Please enter your house number ")  # question for customers house number
     customer_details['house'] = not_blank(question)  # input stored in dictionary, blank input run def not_blank
     print (customer_details['house'])  # prints customers entered house number
     print()
 
-    question = ("Please enter your street name ")  # question for customers street name
+    question = ("4 Please enter your street name ")  # question for customers street name
     customer_details['street'] = check_string(question)  # input stored in dictionary, blank input run def check_string
     print (customer_details['street'])  # prints customer entered street name
     print()
 
-    question = ("Please enter your suburb ")  # question for customers suburb
+    question = ("5 Please enter your suburb ")  # question for customers suburb
     customer_details['suburb'] = check_string(question)  # input stored in dictionary, blank input run def check_string
     print (customer_details['suburb'])  # prints customers entered suburb
     print()
@@ -158,8 +159,10 @@ def delivery_info():  # function to collect customers delivery information
 def menu(): # function to print menu items and their prices
     number_items = 12  # number of items on the menu that will be printed
 
+    print("Item list")
     for count in range (number_items):
         print("{} {} ${:.2f}"  .format(count+1,music_names[count],music_prices[count]))  # prints item menu with prices (2 decimal places)
+        
 
 
 # Choose total number of music items
@@ -169,7 +172,7 @@ def order_music():  # function to see how many items the customer wants to order
     num_items = 0
     while True:  # sets up while loop
         try:
-
+            print()
             num_items = int(input("How many items do you want to order? "))  # variable, expected input will be an integer
             if num_items >= 1 and num_items <=12:
                 break  # exits out of loop
@@ -185,6 +188,7 @@ def order_music():  # function to see how many items the customer wants to order
         while num_items > 0:
             while True:  # sets up while loop
                 try: 
+                    print()
                     items_ordered = int(input("Please choose what item or items by entering the number from the menu "))  # expected input will be a integer
                     if items_ordered >= 1 and items_ordered <=12: # if integer entered is larger than 1 and smaller than 12
                         break  # exits out of loop
@@ -210,14 +214,14 @@ def print_order(del_click):  # function to print out order information and custo
         print("Your order if for Click and Collect")
         print()
         print("Your Details")
-        print(f"Customer Name: {customer_details['name']} \nCustomer Phone: {customer_details['mobile_phone']}")
+        print(f"1 Customer Name: {customer_details['name']} \n2 Customer Phone: {customer_details['mobile_phone']}")
         print()  # the line above gets customers information from the dictionary and prints it for the customer to see
         print("You will receive a text message when your item/s are ready to be picked up")
         print()
     elif del_click == 'delivery':  # if parameter is delivery, prints customer details for delivery from customer_details dictionary
         print()
         print("Your order is for delivery")
-        print(f"Customer Name: {customer_details['name']} \nCustomer Phone: {customer_details['phone']} \nCustomer Address: {customer_details['house']} {customer_details['street']} {customer_details['suburb']}")
+        print(f"1 Customer Name: {customer_details['name']} \n2 Customer Phone: {customer_details['phone']} \n3 Customer Address: {customer_details['house']} {customer_details['street']} {customer_details['suburb']}")
         print()  # the line above gets customers information from the dictionary and prints it for the customer to see
 # line break
     print("Your Order Details")
@@ -243,8 +247,8 @@ def print_order(del_click):  # function to print out order information and custo
 def confirm_cancel():  # function to confirm or cancel the order
 
     print ("Please confirm your order below")  # gives the user options to choose, tells user what they are
-    print ("To confirm please enter 1")
-    print ("To cancel please enter 2")
+    print ("1 To confirm order")
+    print ("2 To cancel order")
     print()
 
     while True:  # sets up while loop
@@ -275,8 +279,8 @@ def confirm_cancel():  # function to confirm or cancel the order
 # Option for new order or to exit the program
 def new_exit():  # function to allow customer to exit program or start new order
         print ("Do you want to start another order or exit? ")  # gives user options to choose, tells them what they are
-        print ("To start another order enter 1")
-        print ("To exit the BOT enter 2")
+        print ("1 To start another order")
+        print ("2 To exit the BOT")
         print()
 
         while True:  # sets up while loop
