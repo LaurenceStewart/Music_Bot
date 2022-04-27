@@ -61,7 +61,7 @@ def check_phone(question, PH_LOW, PH_HIGH):
             if count >= PH_LOW and count <= PH_HIGH:  # if number entered between 7 and 10 it will print it
                 return str(num) # returns string to variable, question          
             else:  # if number entered is not between 7 and 10 it will print message
-                print("NZ phone number have between 7 and 10 digits")
+                print("NZ phone numbers have between 7 and 10 digits")
         except ValueError:  # if input is not a number
             print("Try again")
 
