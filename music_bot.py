@@ -15,9 +15,10 @@ PH_HIGH = 10  # highest number is 10
 # list of random names
 names = ["Laurence", "George", "Toby", "Caleb", "Matthew", "Josh", "Terry", "Zach", "Luke", "Oscar"]
 # list of music names
-music_names = ['Black Ice AC/DC                 # CD','PowerUp AC/DC                   # CD','Ten Peral Jam                   # CD','From the Fires Greta Van Fleet  # CD'
-            ,'Hotel California Eagles         # CD','Reload Metallica                # CD','Mothership Led Zepplin          # Vinyl','Powerage AC/DC                  # Vinyl'
-            ,'Warning Green Day               # Vinyl','Rattle and Hum U2              # Vinyl','Deisel and Dust Midnight Oil   # Vinyl','Greatest Hits Queen            # Vinyl']
+music_names = ['Black Ice AC/DC                 # CD', 'PowerUp AC/DC                   # CD', 'Ten Peral Jam                   # CD', 'From the Fires Greta Van Fleet  # CD'
+                , 'Hotel California Eagles         # CD', 'Reload Metallica                # CD', 'Mothership Led Zepplin          # Vinyl', 'Powerage AC/DC                  # Vinyl'
+                , 'Warning Green Day               # Vinyl', 'Rattle and Hum U2              # Vinyl', 'Deisel and Dust Midnight Oil   # Vinyl', 'Greatest Hits Queen            # Vinyl']
+
 # list of music prices
 music_prices = [20.50, 20.50, 20.50, 20.50, 20.50, 20.50, 40.00, 40.00, 40.00, 40.00, 40.00,40.00]  # prices correspond to music names
 
@@ -31,53 +32,53 @@ customer_details = {}  # this is where the customers information will be stored
 
 
 # validated inputs to check if they are blank
-def not_blank(question): # function to check blank inputs and print not blank message
+def not_blank(question):  # function to check blank inputs and print not blank message
     valid = False
     while not valid:
         response = input(question)  # asks for input
         if response != "":  # if response is blank print error message
             return response.title()  # if true returns response 
         else: 
-            print("This cannot be blank") # this cannot be blank message
+            print("This cannot be blank")  # this cannot be blank message
 
-def check_string(question): # function to check for numbers in inputs that should only contain letters
-    while True: # sets up while loop
+def check_string(question):  # function to check for numbers in inputs that should only contain letters
+    while True:  # sets up while loop
         response = input(question)
         x = response.isalpha()
-        if x == False:
-            print("Input must only contain letters") # error message
+        if x is False:
+            print("Input must only contain letters")  # error message
         else:
-            return response.title() # returns response and makes sure the first letter entered is a capital and rest are lowercase
+            return response.title()  # returns response and makes sure the first letter entered is a capital and rest are lowercase
 
 def check_phone(question, PH_LOW, PH_HIGH):
     while True:  # sets up while loop
         try:
             num = int(input(question))  # expect customer input is integer
-            test_num = num 
+            test_num = num
             count = 0
             while test_num > 0:
                 test_num = test_num//10
                 count = count + 1
             if count >= PH_LOW and count <= PH_HIGH:  # if number entered between 7 and 10 it will print it
-                return str(num) # returns string to variable, question          
+                return str(num)  # returns string to variable, question 
             else:  # if number entered is not between 7 and 10 it will print message
                 print("NZ phone numbers have between 7 and 10 digits")
         except ValueError:  # if input is not a number
             print("Try again")
 
 # welcome message
-def welcome(): # function to print a welcome message to the customer
+def welcome():  # function to print a welcome message to the customer
     # what the code does, if it has any parameters or returns
     '''
     Purpose: to generate a random name from the list and print out a welcome message 
     Parameters: none
     Returns: none
     '''
-    num = randint(0,9) # random integer within 0 - 9, this is how many random names are in the list
-    name = (names[num]) # name generated corresponds to randint or random number in line above
+    num = randint(0,9)  # random integer within 0 - 9, this is how many random names are in the list
+    name = (names[num])  # name generated corresponds to randint or random number in line above
     print()
     print("#### Welcome to Groovey Music ####")
-    print("#### My name is",name, "####") # prints message with random name from list
+    print("#### My name is" , name , "####")  # prints message with random name from list
     print("#### I am here to help you order music albums of your choice ####")
     print()
 
@@ -91,22 +92,22 @@ def order_type():
     print()
     while True:  # sets up while loop
         try:    
-            delivery = int(input("Please enter a number ")) # variable, expected input will be an integer
+            delivery = int(input("Please enter a number "))  # variable, expected input will be an integer
             if delivery >= 1 and delivery <= 2:
-                if delivery == 1: # if delivery (variable) is 1
+                if delivery == 1:  # if delivery (variable) is 1
                     print("Click and collect")
                     print()
-                    del_click = 'click and collect' # variable is for click and collect 
+                    del_click = 'click and collect'  # variable is for click and collect 
                     clickcollect_info()  # runs click and collect info function
-                    break # exits out of the loop
+                    break  # exits out of the loop
             
-                elif delivery == 2: # elif delivery (variable) is 2
+                elif delivery == 2:  # elif delivery (variable) is 2
                     print("Delivery")
                     print()
-                    del_click = 'delivery' # variable is for delivery
+                    del_click = 'delivery'  # variable is for delivery
                     delivery_info()  # runs delivery info function
-                    break # exits out of the loop
-            else: # something other than a number is entered
+                    break  # exits out of the loop
+            else:  # something other than a number is entered
                 print("The number entered must be 1 or 2")
         except ValueError:  # a number other than 1 or 2 is entered
             print ("That is not a valid input")
@@ -114,7 +115,7 @@ def order_type():
     return del_click  # returns the variable del_click
 
 
-#Click and collect information - name and mobile phone
+# Click and collect information - name and mobile phone
 def clickcollect_info():  # function to collect customers click and collect information
     question = ("1 Please enter your name ")  # question for customers name
     customer_details['name'] = check_string(question)  # input stored in dictionary, blank input run def check_string
@@ -127,7 +128,7 @@ def clickcollect_info():  # function to collect customers click and collect info
     print()
 
 
-#Delivery information - name, address, phone number
+# Delivery information - name, address, phone number
 def delivery_info():  # function to collect customers delivery information
     question = ("1 Please enter your name ")  # question for customers name
     customer_details['name'] = check_string(question)  # input stored in dictionary, blank input run def check_string
@@ -155,14 +156,13 @@ def delivery_info():  # function to collect customers delivery information
     print()
 
 
-#Music menu
-def menu(): # function to print menu items and their prices
+# Music menu
+def menu():  # function to print menu items and their prices
     number_items = 12  # number of items on the menu that will be printed
 
     print("Item list")
-    for count in range (number_items):
+    for count in range(number_items):
         print("{} {} ${:.2f}"  .format(count+1,music_names[count],music_prices[count]))  # prints item menu with prices (2 decimal places)
-        
 
 
 # Choose total number of music items
@@ -190,15 +190,15 @@ def order_music():  # function to see how many items the customer wants to order
                 try: 
                     print()
                     items_ordered = int(input("Please choose what item or items by entering the number from the menu "))  # expected input will be a integer
-                    if items_ordered >= 1 and items_ordered <=12: # if integer entered is larger than 1 and smaller than 12
+                    if items_ordered >= 1 and items_ordered <=12:  # if integer entered is larger than 1 and smaller than 12
                         break  # exits out of loop
                     else:  # if something other than a number is entered
-                        print("Your item must be between 1 and 12") 
+                        print("Your item must be between 1 and 12")
                 except ValueError:  # if a number below 1 or above 12 is entered
                         print("That is not a valid number")
                         print("Please enter a number between 1 and 12")
             items_ordered = items_ordered -1
-            order_list.append(music_names[items_ordered]) # 
+            order_list.append(music_names[items_ordered])
             order_cost.append(music_prices[items_ordered])
             print("{} ${:.2f}"  .format(music_names[items_ordered],music_prices[items_ordered]))  # prints selected items with cost from lists
             num_items = num_items-1
@@ -252,7 +252,7 @@ def confirm_cancel():  # function to confirm or cancel the order
     print()
 
     while True:  # sets up while loop
-        try:    
+        try:
             confirm = int(input("Please enter a number "))  # variable, expected input will be a integer
             if confirm >= 1 and confirm <= 2:  # if statement for customer input
                 if confirm == 1:  # if the variable input is 1
@@ -284,7 +284,7 @@ def new_exit():  # function to allow customer to exit program or start new order
         print()
 
         while True:  # sets up while loop
-            try:    
+            try:
                 confirm = int(input("Please enter a number "))  # variable, expected input will be an integer
                 if confirm >= 1 and confirm <= 2:  # if statement for customer input
                     if confirm == 1:  # if the customer inout is 1
